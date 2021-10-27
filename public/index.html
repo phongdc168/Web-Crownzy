@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- CSS -->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- <link rel="stylesheet" href="%PUBLIC_URL%/style.css"  type = "text/css" /> -->
+
+  <title>Crownzy</title>
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow&family=PT+Sans&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+.header{
+  position: sticky;
+    top: 0px;
+    z-index: 999;
+  background-color: #fff;
+  display: flex;
+  width: 100%;
+  height: 68px;
+  box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+  flex-basis: 100%;
+}
+.logo-web{
+  width: 30%;
+}
+.logo-web>a{
+  color:#04111d;
+      font-family:Poppins;
+      font-size:45px;
+      font-weight:950;
+     padding: 15px 100px;
+}
+.services{
+  left: 0;
+  width: 45%;
+}
+.services > ul{
+  display: flex;
+  align-items: flex-end;
+  list-style-type:none;
+}
+.services > ul > li{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.services > ul > li > a{
+  margin-top: 21px;
+    padding: 0px 10px;
+    font-size: 22px;
+    color: gray;
+}
+.address-wallet{
+  width: 25%;
+  margin-top: 12.5px;
+}
+.background{
+  background-image:url(https://vn.got-it.ai/assets/images/background-blue-arrows-251bca5ea8.svg);
+  background-size: cover;
+  height: 281px;
+  width: 100%;
+  margin-top: 25px;
+ 
+}
+.bgr-title{
+  width: 72%;
+  display: flex;
+  flex-direction: column;
+  padding: 72px 200px;
+}
+.title-web{
+  height: 50%;
+  align-items: center;
+}
+.title-web>.title{
+  color:#04111d;
+      font-family:Poppins;
+      font-size:45px;
+      font-weight:800;
+      line-height:49.5px;
+      margin:0px 10px 0px 0px;
+      text-align:left;
+}
+.btn-add_project{
+  border: 1px solid #2081e2;
+  border-radius: 3px;
+  color: #2081e2;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 800;
+}
+.title-project{
+  border-left: 6px solid #2081e2;
+  color:#04111d;
+  font-family:Poppins;
+  font-size:45px;
+  font-weight:800;
+  line-height:49.5px;
+  text-align: start;
+  margin-top:2rem;
+  margin-bottom: 2rem;
+}
+.detail-body{
+      margin-top: 2rem;
+      max-width: 62rem;
+      margin-left: 10rem;
+  }
+    @media (min-width: 576px) {
+      .card {
+        border: 0;
+        box-shadow: rgb(0 0 0 / 5%) 0px 10px 20px;
+        border-radius: 10px;
+      }
+
+      .card-img-top {
+        width: 100%;
+        height: 20vw;
+        object-fit: cover;
+      }
+    }
+
+    #team-gravity{
+      width: 100%;
+    }
+    #team-gravity > img{
+      margin-left: 7rem;
+    }
+</style>
+<body>
+  <div class="alert alert-primary alert-dismissible sticky-top mt-2" role="alert">
+    <span id="notification">Đang tải...</span>
+  </div>
+  <!--header-->
+  <div id="subContainer">
+
+  <div class="header">
+    <div class="logo-web">
+      <a href="/">Crownzy</a>
+    </div>
+    <div class="services">
+      <ul>
+        <li><a href="#tag-project">Các dự án</a></li>
+        <li><a href="#team-gravity">Team</a></li>
+        <li><a href="#">Đấu giá gây quỹ</a></li>
+      </ul>
+    </div>
+    <div class="address-wallet">
+      <span class="nav-link rounded-pill" style="border:2px solid #2081e2;">
+        <span id="balance">0</span>
+        cUSD
+      </span>
+    </div>
+  </div>
+
+    <!--header-->
+
+   <!--banner-->
+  <div class="background">
+    <div class="bgr-title">
+    <div class="title-web">
+    <h1 class="title">Nền tảng gọi vốn cộng đồng sử dụng Blockchain</h1>
+    </div>
+    <div class="mb-4" style="margin-top: 40px;">
+      <a class="btn-add_project" data-bs-toggle="modal" data-bs-target="#addModal">
+        Tạo dự án
+      </a>
+    </div>
+  </div>
+</div>
+
+     <!--banner-->
+
+    <!--body-->
+    
+  <div class="container mt-2" style="max-width: 72em;">
+    <div class="project-current" id="tag-project">
+      <h1 class="title-project" > Dự án hiện tại</h1>
+    <div id="mainContainer">
+      
+      <main id="catalogue" class="row"></main>
+    </div>
+
+    <!-- <div id="subContainer">
+
+    </div> -->
+    <!--Modal-->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="newProjectModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="newProjectModalLabel">New Project</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-row">
+                <div class="col">
+                  <input type="text" id="newProjectName" class="form-control mb-2"
+                    placeholder="Enter name of project" />
+                </div>
+                <div class="col">
+                  <input type="text" id="newImgUrl" class="form-control mb-2" placeholder="Enter image url" />
+                </div>
+                <div class="col">
+                  <input type="text" id="newProjectDescription" class="form-control mb-2"
+                    placeholder="Enter project description" />
+                </div>
+                <div class="col">
+                  <input type="text" id="newWebsite" class="form-control mb-2" placeholder="Enter Website url" />
+                </div>
+                <div class="col">
+                  <input type="text" id="newTarget" class="form-control mb-2" placeholder="Enter Fundraising Target" />
+                </div>
+                <div class="col">
+                  <input type="text" id="newMinContrib" class="form-control mb-2"
+                    placeholder="Enter Fundraising Minimum contribution" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light border" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal" id="newProjectBtn">
+              Add project
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="project-expires">
+      <div id="mainContainer">
+        <h1 class="title-project"> Dự án hết hạn</h1>
+        <main id="catalogue-close" class="row"></main>
+      </div>
+  
+      <!-- <div id="subContainer">
+  
+      </div> -->
+      <!--Modal-->
+    </div>
+    <div id="team-gravity">
+      <h1 class="title-project" > Team</h1>
+      <img src="https://scontent.fdad3-5.fna.fbcdn.net/v/t1.15752-9/248610986_553742189047776_8662647671211683096_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=ae9488&_nc_ohc=RMppm1_dnfMAX-rWJE_&_nc_ht=scontent.fdad3-5.fna&oh=fd195d1de0e58751db279dcf692b5b0c&oe=619F38A1" alt="">
+    </div>
+  </div>
+ 
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/ethereum-blockies@0.1.1/blockies.min.js"></script>
+</body>
+
+</html>

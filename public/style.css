@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=PT+Sans&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+.header{
+  position: sticky;
+    top: 0px;
+    z-index: 999;
+  background-color: #fff;
+  display: flex;
+  width: 100%;
+  height: 68px;
+  box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+  flex-basis: 100%;
+}
+.logo-web{
+  width: 30%;
+}
+.logo-web>a{
+  color:#04111d;
+      font-family:Poppins;
+      font-size:45px;
+      font-weight:950;
+     padding: 15px 100px;
+}
+.services{
+  left: 0;
+  width: 45%;
+}
+.services > ul{
+  display: flex;
+  align-items: flex-end;
+  list-style-type:none;
+}
+.services > ul > li{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.services > ul > li > a{
+  margin-top: 21px;
+    padding: 0px 80px;
+    font-size: 22px;
+    color: gray;
+}
+.address-wallet{
+  width: 25%;
+  margin-top: 12.5px;
+}
+.background{
+  background-image:url(https://vn.got-it.ai/assets/images/background-blue-arrows-251bca5ea8.svg);
+  background-size: cover;
+  height: 281px;
+  width: 100%;
+  margin-top: 25px;
+ 
+}
+.bgr-title{
+  width: 72%;
+  display: flex;
+  flex-direction: column;
+  padding: 72px 200px;
+}
+.title-web{
+  height: 50%;
+  align-items: center;
+}
+.title-web>.title{
+  color:#04111d;
+      font-family:Poppins;
+      font-size:45px;
+      font-weight:800;
+      line-height:49.5px;
+      margin:0px 10px 0px 0px;
+      text-align:left;
+}
+.btn-add_project{
+  border: 1px solid #2081e2;
+  border-radius: 3px;
+  color: #2081e2;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 800;
+}
+.title-project{
+  border-left: 6px solid #2081e2;
+  color:#04111d;
+  font-family:Poppins;
+  font-size:45px;
+  font-weight:800;
+  line-height:49.5px;
+  text-align: start;
+  margin-top:2rem;
+  margin-bottom: 2rem;
+}
+.detail-body{
+      margin-top: 2rem;
+      max-width: 62rem;
+      margin-left: 10rem;
+  }
+    @media (min-width: 576px) {
+      .card {
+        border: 0;
+        box-shadow: rgb(0 0 0 / 5%) 0px 10px 20px;
+        border-radius: 10px;
+      }
+
+      .card-img-top {
+        width: 100%;
+        height: 20vw;
+        object-fit: cover;
+      }
+    }
+
+    #team-gravity{
+      width: 100%;
+    }
+    #team-gravity > img{
+      margin-left: 7rem;
+    }
