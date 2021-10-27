@@ -49,7 +49,8 @@ async function approve(_price) {
 const getBalance = async function () {
   const totalBalance = await kit.getTotalBalance(kit.defaultAccount);
   const cUSDBalance = totalBalance.cUSD.shiftedBy(-ERC20_DECIMALS).toFixed(2);
-  document.querySelector("#balance").textContent = cUSDBalance;
+  const accounts = await kit.web3.eth.getAccounts();
+  document.querySelector("#balance").textContent = accounts[0];
 };
 
 
@@ -148,7 +149,7 @@ function projectTemplate(_project) {
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       display: -webkit-box;
-      margin-bottom:0;">
+      margin-bottom:16px;">
         ${_project.description}         
       </p>
       

@@ -6,7 +6,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- CSS -->
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css" />
@@ -23,13 +22,14 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family:Poppins;
 }
 a {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
 }
 .header{
-  position: sticky;
+  position: fixed;
     top: 0px;
     z-index: 999;
   background-color: #fff;
@@ -78,7 +78,7 @@ a {
   background-size: cover;
   height: 281px;
   width: 100%;
-  margin-top: 25px;
+  margin-top: 7rem;
  
 }
 .bgr-title{
@@ -147,8 +147,8 @@ a {
     }
 </style>
 <body>
-  <div class="alert alert-primary alert-dismissible sticky-top mt-2" role="alert">
-    <span id="notification">Đang tải...</span>
+  <div class="alert alert-primary alert-dismissible sticky-top mt-2" role="alert" style="position: relative;">
+    <span id="notification">Kết nối ví Celo để sử dụng</span>
   </div>
   <!--header-->
   <div id="subContainer">
@@ -160,14 +160,17 @@ a {
     <div class="services">
       <ul>
         <li><a href="#tag-project">Các dự án</a></li>
-        <li><a href="#team-gravity">Team</a></li>
+        <li><a href="#team-gravity" style="margin-left:1.7rem;">Team</a></li>
         <li><a href="#">Đấu giá gây quỹ</a></li>
       </ul>
     </div>
     <div class="address-wallet">
       <span class="nav-link rounded-pill" style="border:2px solid #2081e2;">
-        <span id="balance">0</span>
-        cUSD
+        <p id="balance" style=
+        "overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0;">0</p>
+      
       </span>
     </div>
   </div>
@@ -206,45 +209,51 @@ a {
     <!--Modal-->
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="newProjectModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="border-radius: 0.8rem !important;">
 
-          <div class="modal-header">
-            <h5 class="modal-title" id="newProjectModalLabel">New Project</h5>
+          <div class="modal-header" 
+          style="
+          background: #0556cf;
+          color: #fff;
+          ">
+            <h5 class="modal-title" id="newProjectModalLabel" style="color: #fff;
+            font-size: 21px !important;
+            font-weight: 800;"></i>Dự án mới</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form style="outline: none;">
               <div class="form-row">
                 <div class="col">
                   <input type="text" id="newProjectName" class="form-control mb-2"
-                    placeholder="Enter name of project" />
+                    placeholder="Nhập tên project" />
                 </div>
                 <div class="col">
-                  <input type="text" id="newImgUrl" class="form-control mb-2" placeholder="Enter image url" />
+                  <input type="text" id="newImgUrl" class="form-control mb-2" placeholder="Nhập url ảnh dự án" />
                 </div>
                 <div class="col">
                   <input type="text" id="newProjectDescription" class="form-control mb-2"
-                    placeholder="Enter project description" />
+                    placeholder="Miêu tả dự án" />
                 </div>
                 <div class="col">
-                  <input type="text" id="newWebsite" class="form-control mb-2" placeholder="Enter Website url" />
+                  <input type="text" id="newWebsite" class="form-control mb-2" placeholder="Nhập url website" />
                 </div>
                 <div class="col">
-                  <input type="text" id="newTarget" class="form-control mb-2" placeholder="Enter Fundraising Target" />
+                  <input type="text" id="newTarget" class="form-control mb-2" placeholder="Số tiền gọi vốn" />
                 </div>
                 <div class="col">
                   <input type="text" id="newMinContrib" class="form-control mb-2"
-                    placeholder="Enter Fundraising Minimum contribution" />
+                    placeholder="Nhập khoản đóng góp tối thiểu để gây quỹ" />
                 </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-light border" data-bs-dismiss="modal">
-              Close
+            <button type="button" class="btn btn-light border" style="font-weight: 800; color:#2081e2" data-bs-dismiss="modal">
+              Đóng
             </button>
-            <button type="button" class="btn btn-dark" data-bs-dismiss="modal" id="newProjectBtn">
-              Add project
+            <button type="button" class="btn btn-primary" style="font-weight: 800;"data-bs-dismiss="modal" id="newProjectBtn">
+              Tạo project
             </button>
           </div>
         </div>
