@@ -14,11 +14,12 @@ interface IERC20Token {
 }
 
 contract CrownZy {
-  struct contributionData {
+  struct ContributionData {
     address contributer;
     uint[] contribs;
     uint[] timestamps;
     uint totalContrib;
+    string[] message;
     bool withdrawable;
   }
 
@@ -38,7 +39,7 @@ contract CrownZy {
     bool fundingOpen;
     bool exists;
     
-    mapping(address => contributionData) contributions;
+    mapping(address => ContributionData) contributions;
   }
   uint internal projectCount = 0;
   mapping(uint => Project) internal projects;  
@@ -151,7 +152,7 @@ contract CrownZy {
     );
   }
   
-  function fundProject (uint _index, uint _amount) public payable {
+  function fundProject (uint _index, uint _amount, string memory _message) public payable {
     Project storage project = projects[_index];
     
     // Error Handling
@@ -186,6 +187,7 @@ contract CrownZy {
     project.contributions[msg.sender].contribs.push(_amount);
     project.contributions[msg.sender].timestamps.push(block.timestamp);
     project.contributions[msg.sender].totalContrib += _amount;
+    project.contributions[msg.sender].message.push(_message);
     project.contributions[msg.sender].withdrawable = false;
       
     // Check if Target is reached 
@@ -213,9 +215,9 @@ contract CrownZy {
     require(project.exists, 'The project does not exist!');
     require(project.fundingOpen, 'Project funding is already closed!');
     
-    // 12 minutes is for testing purposes, ideally this could be 30 days or otherwise.
-    if(block.timestamp < (project.timestamp + 12 minutes)) {
-      revert("The Fund cannot be closed before 12 minutes elapse");
+    // 1 minutes is for testing purposes, ideally this could be 30 days or otherwise.
+    if(block.timestamp < (project.timestamp + 1 minutes)) {
+      revert("The Fund cannot be closed before 1 minutes elapse");
     }
     
     project.fundingOpen = false;
@@ -248,6 +250,7 @@ contract CrownZy {
     uint[] memory,
     uint[] memory,
     uint,
+    string[] memory,
     bool    
   ) {
     Project storage project = projects[_index];
@@ -259,6 +262,7 @@ contract CrownZy {
       project.contributions[msg.sender].contribs,
       project.contributions[msg.sender].timestamps,
       project.contributions[msg.sender].totalContrib,
+      project.contributions[msg.sender].message,
       project.contributions[msg.sender].withdrawable
     );
   }

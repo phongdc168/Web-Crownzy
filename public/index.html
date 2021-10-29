@@ -9,187 +9,66 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-  <!-- <link rel="stylesheet" href="%PUBLIC_URL%/style.css"  type = "text/css" /> -->
-
-  <title>Crownzy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,700;1,200;1,300;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<%= htmlWebpackPlugin.options.style %>"  type = "text/css" />
+  <title>Crownzy - Gây quỹ cộng đồng trên công nghệ Blockchain</title>
 </head>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Barlow&family=PT+Sans&display=swap');
-
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family:Poppins;
-}
-a {
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-}
-.header{
-  position: fixed;
-    top: 0px;
-    z-index: 999;
-  background-color: #fff;
-  display: flex;
-  width: 100%;
-  height: 68px;
-  box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
-  flex-basis: 100%;
-}
-.logo-web{
-  width: 30%;
-}
-.logo-web>a{
-  color:#04111d;
-      font-family:Poppins;
-      font-size:45px;
-      font-weight:950;
-     padding: 15px 100px;
-}
-.services{
-  left: 0;
-  width: 45%;
-}
-.services > ul{
-  display: flex;
-  align-items: flex-end;
-  list-style-type:none;
-}
-.services > ul > li{
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-}
-.services > ul > li > a{
-  margin-top: 21px;
-    padding: 0px 10px;
-    font-size: 22px;
-    color: gray;
-}
-.address-wallet{
-  width: 25%;
-  margin-top: 12.5px;
-}
-.background{
-  background-image:url(https://vn.got-it.ai/assets/images/background-blue-arrows-251bca5ea8.svg);
-  background-size: cover;
-  height: 281px;
-  width: 100%;
-  margin-top: 7rem;
- 
-}
-.bgr-title{
-  width: 72%;
-  display: flex;
-  flex-direction: column;
-  padding: 72px 200px;
-}
-.title-web{
-  height: 50%;
-  align-items: center;
-}
-.title-web>.title{
-  color:#04111d;
-      font-family:Poppins;
-      font-size:45px;
-      font-weight:800;
-      line-height:49.5px;
-      margin:0px 10px 0px 0px;
-      text-align:left;
-}
-.btn-add_project{
-  border: 1px solid #2081e2;
-  border-radius: 3px;
-  color: #2081e2;
-  padding: 12px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 800;
-}
-.title-project{
-  border-left: 6px solid #2081e2;
-  color:#04111d;
-  font-family:Poppins;
-  font-size:45px;
-  font-weight:800;
-  line-height:49.5px;
-  text-align: start;
-  margin-top:2rem;
-  margin-bottom: 2rem;
-}
-.detail-body{
-      margin-top: 2rem;
-      max-width: 62rem;
-      margin-left: 10rem;
-  }
-    @media (min-width: 576px) {
-      .card {
-        border: 0;
-        box-shadow: rgb(0 0 0 / 5%) 0px 10px 20px;
-        border-radius: 10px;
-      }
-
-      .card-img-top {
-        width: 100%;
-        height: 20vw;
-        object-fit: cover;
-      }
-    }
-
-    #team-gravity{
-      width: 100%;
-    }
-    #team-gravity > img{
-      margin-left: 7rem;
-    }
+<style> 
 </style>
 <body>
-  <div class="alert alert-primary alert-dismissible sticky-top mt-2" role="alert" style="position: relative;">
+  <div class="alert alert-primary alert-dismissible sticky-top mt-2" role="alert" style="position: absolute; margin-top: 90px; width: 100%;">
     <span id="notification">Kết nối ví Celo để sử dụng</span>
   </div>
+
   <!--header-->
-  <div id="subContainer">
-
   <div class="header">
-    <div class="logo-web">
-      <a href="/">Crownzy</a>
-    </div>
-    <div class="services">
-      <ul>
-        <li><a href="#tag-project">Các dự án</a></li>
-        <li><a href="#team-gravity" style="margin-left:1.7rem;">Team</a></li>
-        <li><a href="#">Đấu giá gây quỹ</a></li>
-      </ul>
-    </div>
-    <div class="address-wallet">
-      <span class="nav-link rounded-pill" style="border:2px solid #2081e2;">
-        <p id="balance" style=
-        "overflow: hidden;
-        text-overflow: ellipsis;
-        margin-bottom: 0;">0</p>
-      
-      </span>
-    </div>
-  </div>
+    <div class="container">
+      <div class="logo-web">
+        <a href="/"><img style="height: 68px;width: 75px;" src="https://scontent.fdad3-5.fna.fbcdn.net/v/t1.15752-9/p1080x2048/249946334_593174098551553_585658675031182192_n.png?_nc_cat=102&ccb=1-5&_nc_sid=ae9488&_nc_ohc=1-tZXyujvYAAX8NINnQ&_nc_ht=scontent.fdad3-5.fna&oh=fcc243431ac277107e0daa3d4ddc3521&oe=61A0BB24">Crownzy</a>
+      </div>
+      <div class="address-wallet">
+        <span class="nav-link rounded-pill" style="border:2px solid #2081e2;">
+          <p id="balance" style=
+          "overflow: hidden;
+          text-overflow: ellipsis;
+          margin-bottom: 0;">0</p>
+        
+        </span>
+      </div>
+      <div class="services">
+        <ul>
+          <li><a href="#tag-project">Các dự án</a></li>
+          <li><a href="#team-gravity" style="margin-left:1.7rem;">Team</a></li>
+          <li><a href="#">Đấu giá gây quỹ</a></li>
+        </ul>
+      </div>
 
+    </div>
+
+
+  </div>
     <!--header-->
+  <div id="subContainer" class="container">
+
+
 
    <!--banner-->
   <div class="background">
-    <div class="bgr-title">
-    <div class="title-web">
-    <h1 class="title">Nền tảng gọi vốn cộng đồng sử dụng Blockchain</h1>
-    </div>
-    <div class="mb-4" style="margin-top: 40px;">
-      <a class="btn-add_project" data-bs-toggle="modal" data-bs-target="#addModal">
-        Tạo dự án
-      </a>
+    <div class="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12" style="margin: 0 auto;">
+      <div class="bgr-title">
+        <div class="title-web">
+          <h1 class="title">Nền tảng gọi vốn cộng đồng sử dụng Blockchain</h1>
+        </div>
+        <div class="mb-4" style="margin-top: 40px;">
+          <a class="btn-add_project" data-bs-toggle="modal" data-bs-target="#addModal">
+            Tạo dự án mới
+          </a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
      <!--banner-->
 
@@ -284,6 +163,193 @@ a {
     integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/ethereum-blockies@0.1.1/blockies.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js">
+  </script>
 </body>
 
+<style type="text/css">
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+  }
+  a {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+  }
+  .header{
+    position: fixed;
+    top: 0px;
+    z-index: 999;
+    background-color: #fff;
+    display: flex;
+    width: 100%;
+    height: 68px;
+    box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+    flex-basis: 100%;
+  }
+  .logo-web{
+    width: 27%;
+    display: inline-block;
+  }
+  .logo-web>a{
+    color: #04111d;
+    font-family: 'Nunito', sans-serif;
+    font-size:45px;
+    font-weight:950;
+  }
+  .services{
+    left: 0;
+    width: 47%;
+    display: inline-block;
+    float: right;
+  }
+  .services > ul{
+    display: flex;
+    align-items: flex-end;
+    list-style-type:none;
+    height: 68px;
+    vertical-align: middle;
+    /*line-height: 68px;*/
+  }
+  .vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  .title-detail{
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 55px;
+    font-weight:800;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #0d6efd;
+  }
+  .services > ul > li{
+    /*width: 50%;*/
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0px 15px;
+  }
+  .services > ul > li > a{
+    font-size: 22px;
+    color: gray;
+    height: 100%;
+    display: flex;
+    align-items: center; /* Vertical center alignment */
+    justify-content: center; /* Horizontal center alignment */
+  }
+  .address-wallet{
+    width: 25%;
+    margin-top: 12.5px;
+    display: inline-block;
+    float: right;
+  }
+  .background{
+    background-image:url(https://vn.got-it.ai/assets/images/background-blue-arrows-251bca5ea8.svg);
+    background-size: cover;
+    height: 281px;
+    width: 100%;
+    /*margin-top: 7rem;*/
+  }
+  .image-thumb{
+    height: 240px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .image-thumb-banner{
+    height: 250px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .bgr-title{
+    display: flex;
+    flex-direction: column;
+    padding: 25px 50px;
+  }
+  .title-web{
+    height: 50%;
+    align-items: center;
+  }
+  .title-web>.title{
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 55px;
+    font-weight:800;
+    line-height:49.5px;
+    margin:0px 10px 0px 0px;
+    text-align:left;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #0d6efd;
+  }
+  .btn-add_project{
+    border: 1px solid #2081e2;
+    border-radius: 3px;
+    background: #2081e2;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .title-project{
+    border-left: 6px solid #2081e2;
+    color:#04111d;
+    font-family: 'Nunito', sans-serif;
+    font-size:45px;
+    font-weight:800;
+    line-height:49.5px;
+    text-align: start;
+    margin-top:2rem;
+    margin-bottom: 2rem;
+    text-indent: 15px;
+  }
+  .detail-body{
+    /*margin-top: 2rem;*/
+    /*margin-top: 90px;*/
+    /*max-width: 62rem;*/
+    /*margin-left: 10rem;*/
+  }
+  @media (min-width: 576px) {
+    .card {
+      border: 0;
+      box-shadow: rgb(0 0 0 / 5%) 0px 10px 20px;
+      border-radius: 10px;
+    }
+
+    .card-img-top {
+      width: 100%;
+      height: 20vw;
+      object-fit: cover;
+    }
+  }
+
+  #team-gravity{
+    width: 100%;
+  }
+  #team-gravity > img{
+    margin-left: 7rem;
+  }
+  .closeDetails{
+    position: absolute;
+    width: 150px;
+    height: 50px;
+  }
+  #subContainer{
+    padding-top: 90px;
+  }
+  body, p, div, a, span, html { 
+    font-family: 'Nunito', sans-serif;
+  }
+</style>
 </html>

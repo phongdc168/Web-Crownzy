@@ -1,18 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow&family=PT+Sans&display=swap');
-
 *{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
 }
 a {
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
 }
 .header{
-  position: sticky;
-    top: 0px;
-    z-index: 999;
+  position: fixed;
+  top: 0px;
+  z-index: 999;
   background-color: #fff;
   display: flex;
   width: 100%;
@@ -21,23 +20,28 @@ a {
   flex-basis: 100%;
 }
 .logo-web{
-  width: 30%;
+  width: 150px;
+  display: inline-block;
 }
 .logo-web>a{
-  color:#04111d;
-      font-family:Poppins;
-      font-size:45px;
-      font-weight:950;
-     padding: 15px 100px;
+  color: #04111d;
+  font-family: 'Nunito', sans-serif;
+  font-size:45px;
+  font-weight:950;
 }
 .services{
   left: 0;
   width: 45%;
+  display: inline-block;
+  float: right;
 }
 .services > ul{
   display: flex;
   align-items: flex-end;
   list-style-type:none;
+  height: 68px;
+  vertical-align: middle;
+  line-height: 68px;
 }
 .services > ul > li{
   width: 50%;
@@ -45,84 +49,101 @@ a {
   flex-direction: column;
 }
 .services > ul > li > a{
-  margin-top: 21px;
-    padding: 0px 80px;
-    font-size: 22px;
-    color: gray;
+  font-size: 22px;
+  color: gray;
 }
 .address-wallet{
   width: 25%;
   margin-top: 12.5px;
+  display: inline-block;
+  float: right;
 }
 .background{
   background-image:url(https://vn.got-it.ai/assets/images/background-blue-arrows-251bca5ea8.svg);
   background-size: cover;
   height: 281px;
   width: 100%;
-  margin-top: 25px;
- 
+  margin-top: 7rem;
+}
+.image-thumb{
+  height: 240px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .bgr-title{
-  width: 72%;
   display: flex;
   flex-direction: column;
-  padding: 72px 200px;
+  padding: 25px 50px;
 }
 .title-web{
   height: 50%;
   align-items: center;
 }
 .title-web>.title{
-  color:#04111d;
-      font-family:Poppins;
-      font-size:45px;
-      font-weight:800;
-      line-height:49.5px;
-      margin:0px 10px 0px 0px;
-      text-align:left;
+  color: #fff;
+  font-family: 'Nunito', sans-serif;
+  font-size: 55px;
+  font-weight:800;
+  line-height:49.5px;
+  margin:0px 10px 0px 0px;
+  text-align:left;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: #0d6efd;
 }
 .btn-add_project{
   border: 1px solid #2081e2;
   border-radius: 3px;
-  color: #2081e2;
+  background: #2081e2;
   padding: 12px 20px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 800;
+  color: #fff;
 }
 .title-project{
   border-left: 6px solid #2081e2;
   color:#04111d;
-  font-family:Poppins;
+  font-family: 'Nunito', sans-serif;
   font-size:45px;
   font-weight:800;
   line-height:49.5px;
   text-align: start;
   margin-top:2rem;
   margin-bottom: 2rem;
+  text-indent: 15px;
 }
 .detail-body{
-      margin-top: 2rem;
-      max-width: 62rem;
-      margin-left: 10rem;
+  margin-top: 2rem;
+  max-width: 62rem;
+  margin-left: 10rem;
+}
+@media (min-width: 576px) {
+  .card {
+    border: 0;
+    box-shadow: rgb(0 0 0 / 5%) 0px 10px 20px;
+    border-radius: 10px;
   }
-    @media (min-width: 576px) {
-      .card {
-        border: 0;
-        box-shadow: rgb(0 0 0 / 5%) 0px 10px 20px;
-        border-radius: 10px;
-      }
 
-      .card-img-top {
-        width: 100%;
-        height: 20vw;
-        object-fit: cover;
-      }
-    }
+  .card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+  }
+}
 
-    #team-gravity{
-      width: 100%;
-    }
-    #team-gravity > img{
-      margin-left: 7rem;
-    }
+#team-gravity{
+  width: 100%;
+}
+#team-gravity > img{
+  margin-left: 7rem;
+}
+.closeDetails{
+  position: absolute;
+  width: 50px;
+}
+body, p, div, a, span, html { 
+  font-family: 'Nunito', sans-serif;
+}
