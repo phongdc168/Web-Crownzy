@@ -1,4 +1,4 @@
-#### CrownZy-Ứng dụng gọi vốn cộng đồng sử dụng công nghệ Blockchain.
+## CrownZy-Ứng dụng gọi vốn cộng đồng sử dụng công nghệ Blockchain.
 
 ### Các công nghệ sử dụng
 - Etherum
