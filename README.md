@@ -1,39 +1,24 @@
-CrownZy
+#### CrownZy-Ứng dụng gọi vốn cộng đồng sử dụng công nghệ Blockchain.
 
-### Usage
-1. Install the [CeloExtensionWallet](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en) from the google chrome store.
-2. Create a wallet.
-3. Go to [https://celo.org/developers/faucet](https://celo.org/developers/faucet) and get tokens for the alfajores testnet.
-4. Switch to the alfajores testnet in the CeloExtensionWallet.
+### Các công nghệ sử dụng
+- Etherum
+- Google cloud
+- Firebase
+- Nodejs
 
-### Install
+### Cách sử dụng.
+1. Cài đặt ví Celo extension: https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en
+2. Tạo tài khoản ví.
+3. Vào web https://celo.org/developers/faucet để lấy token testnet.
+4. Chuyển sang alfajores testnet trong ví Celo.
+5. Chạy ứng dụng bằng lệnh ```npm run dev```
 
-```
+#### Các tính năng của ứng dụng.
 
-npm install
+- Tạo dự án bằng cách cung cấp các thông tin cơ bản của dự án như tên dự án, website, số tiền muốn gọi vốn.
+- Chọn só tiền mong muốn đầu tư vào dự án.
+- Xem danh sách những người đầu tư vào dự án.
+- Bình luận về dự án.
+- Yêu cầu hoàn lại tiền khi dự án gọi vốn không thành công.
 
-```
 
-or 
-
-```
-
-yarn install
-
-```
-
-### Start
-
-```
-
-npm run dev
-
-```
-
-# Build
-
-```
-
-npm run build
-
-```
