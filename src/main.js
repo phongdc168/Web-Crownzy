@@ -5,13 +5,37 @@ import crowdfundAbi from "../contract/abis/crownzy.abi.json";
 import erc20Abi from "../contract/abis/erc20.abi.json";
 
 const ERC20_DECIMALS = 18;
-const CrownZyContractAddress = "0x207E9578361fae09d011a1a2c053D26a1D47db11";
+const CrownZyContractAddress = "0x5B4eAeBA982328d4e1497bcc4956B3ce6868894C";
 const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1"; 
 
 let kit;
 let contract;
 let projects = [];
 let projectContributions = null;
+let countCommentOfProject = 0;
+
+// Firebase
+
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, set, get, child, update, remove } from "firebase/database";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
+//         import { getDatabase, ref, set, get, child, update, remove } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js";
+        // fix cai ni lai thang config cua ban
+const firebaseConfig = {
+    apiKey: "AIzaSyAHRD_4CIbwDVZ1adMz20wIyPesD3hsKts",
+    authDomain: "test-3dc15.firebaseapp.com",
+    databaseURL: "https://test-3dc15-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "test-3dc15",
+    storageBucket: "test-3dc15.appspot.com",
+    messagingSenderId: "659784768174",
+    appId: "1:659784768174:web:1a8749a871d5da4e772b3f",
+    measurementId: "G-0F89S93WFL"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase();
+const dbRef = ref(db);
 
 
 const connectCeloWallet = async function () {
@@ -221,10 +245,42 @@ function renderProjectDetails(index) {
   console.log('renderProjectDetails 8');
 
   notificationOff();
+
+  var _idProject = document.getElementById("content_comment").getAttribute("idProject");
+  console.log('Path firebase', "comment/"+index+"/");
+  console.log('Path firebase', dbRef);
+  get(child(dbRef,"comment/"+index+"/")).then((snapshot)=>{
+        console.log('get comment detail success', snapshot);
+
+      // snapshot.forEach(function(cmtSnapshot){
+      //   console.log('cmtSnapshot', cmtSnapshot);
+      //   console.log('cmtSnapshot', cmtSnapshot.val());
+      // });
+      if(snapshot.exists()){
+        console.log('get comment detail success', snapshot.val());
+        countCommentOfProject = snapshot.val()['count'];
+        var _datas = snapshot.val();
+
+        for(var _i = 0; _i < countCommentOfProject; _i++){
+          addComment(_datas[_i].comment);
+        }
+        // console.log('countCommentOfProject', countCommentOfProject);
+          // var comment = snapshot.val();
+          // addComment(comment.comment);
+      }
+  })
+  .catch((error)=>{{
+      alert("unsucessfully,error"+error);
+  }});
+
 }
 
 function projectDetailsTemplate(_project) {
   let projectDate = new Date(_project.timestamp * 1000).toUTCString();
+  let projectDateEnd = new Date(_project.timestamp * 1000);
+
+  projectDateEnd.setDate(projectDateEnd.getDate() + 5);
+  projectDateEnd = projectDateEnd.toUTCString();
 
   return `
     <div class="row"
@@ -247,11 +303,18 @@ function projectDetailsTemplate(_project) {
         <p>
           <span><b>Thời gian đăng</b>: ${projectDate}</span>
         </p>
+        <p>
+          <span><b>Thời gian kết thúc dự kiến</b>: ${projectDateEnd}</span>
+        </p>
         <p class="mt-4">
           <i class="bi bi-globe"></i>
           <span><a href=${
             _project.website
           } target="_blank" rel="noopener noreferrer">Website dự án</a></span>
+        </p>
+        <p class="mt-4">
+          <i class="bi bi-wallet2"></i>
+          <span><a href="https://alfajores-blockscout.celo-testnet.org/address/${CrownZyContractAddress}" target="_blank" rel="noopener noreferrer">Địa chỉ hợp đồng</a></span>
         </p>
         <div class="row" style="min-height: 150px">
         <div class="col-md-8">
@@ -339,7 +402,7 @@ function projectDetailsTemplate(_project) {
               <input type="range" class="form-range fundingRange" min="${_project.minContrib.shiftedBy(-ERC20_DECIMALS).toFixed(2)}" step="${_project.minContrib.shiftedBy(-ERC20_DECIMALS).toFixed(2)}" max="${_project.fundingToTarget.shiftedBy(-ERC20_DECIMALS).toFixed(2)}" value="${_project.minContrib.shiftedBy(-ERC20_DECIMALS).toFixed(2)}" id="fundRange">
 
               </br>
-              <textarea id="message-fund" rows="2" spellcheck="false" style="width: 100%; margin-bottom: 0.0rem; " placeholder="Nhập nội dung lời nhắn"></textarea>
+              <textarea id="message-fund" rows="2" spellcheck="false" style="width: 100%; margin-bottom: 0.0rem; border-radius: 10px ; text-indent: 10px ; padding: 10px ;" placeholder="Nhập nội dung lời nhắn"></textarea>
               <div class="row" style="padding: 0.75rem;">
                 <a class="fundBtn" id=${_project.index} style="border: 2px solid #2081e2; border-radius: 12px; margin:auto; padding: 12px 47px; background: #2081e2; cursor: pointer; font-size: 16px; font-weight: 800; box-shadow: rgb(4 17 29 / 25%) 0px 0px 14px 0px; color: #fff; ">
                   Tài trợ
@@ -411,20 +474,20 @@ function projectDetailsTemplate(_project) {
       padding-left:1rem;
       ">Bình luận<p>
 
-      <div class="container">
+      <div class="container" style="padding: 0px;">
       <div class="comment-box">
       <div class="comment-form" >
           <form action="#" onsubmit="event.preventDefault()">
           <div class="comment-form" style="display:flex; width:100%;height:50px;">
           
-          <div style="width:70%;">
+          <div style="width:90%;">
         <textarea 
               style="width: 100%;
               height: 50px;
               border: none;
               border-bottom: 2px solid #2081e2;
-              outline:none;"
-              id="content_comment" rows="3" cols="30" placeholder="Comment" idProject=${_project.index}></textarea>
+              outline:none; box-shadow: rgb(4 17 29 / 25%) 0px 0px 14px 0px; border-radius: 10px ; text-indent: 10px ; padding: 10px ;"
+              id="content_comment" rows="5" placeholder="Nhập nội dung bình luận" idProject=${_project.index}></textarea>
           </div>
           <button 
           style="width: 10%;
@@ -438,7 +501,7 @@ function projectDetailsTemplate(_project) {
           </form>  
       </div>
       <div>
-          <div id="comments" style="height: 300px;box-shadow: rgb(4 17 29 / 25%) 0px 0px 14px 0px; margin-top:1rem;">
+          <div id="comments" style="height: 300px; margin-top:1rem; overflow-y: scroll;">
           </div>
       </div>
       </div>
@@ -453,136 +516,128 @@ function projectDetailsTemplate(_project) {
   `;
 }
 
-// Firebase
+function timeStamp() {
+    var now = new Date();
+    var date = [now.getMonth() + 1, now.getDate(), now.getFullYear()];
+    var time = [now.getHours(), now.getMinutes()];
+    var suffix = (time[0] < 12) ? "AM" : "PM";
+    time[0] = (time[0] < 12) ? time[0] : time[0] - 12;
 
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get, child, update, remove } from "firebase/database";
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
-//         import { getDatabase, ref, set, get, child, update, remove } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js";
-        // fix cai ni lai thang config cua ban
-        const firebaseConfig = {
-            apiKey: "AIzaSyAHRD_4CIbwDVZ1adMz20wIyPesD3hsKts",
-            authDomain: "test-3dc15.firebaseapp.com",
-            databaseURL: "https://test-3dc15-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "test-3dc15",
-            storageBucket: "test-3dc15.appspot.com",
-            messagingSenderId: "659784768174",
-            appId: "1:659784768174:web:1a8749a871d5da4e772b3f",
-            measurementId: "G-0F89S93WFL"
-        };
+    for (var i = 1; i < 3; i++) {
+        if (time[i] < 10) {
+        time[i] = "0" + time[i];
+        }
+    }
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase();
-        const dbRef = ref(db)
+    return date.join("/") + ", " + time.join(":") + " " + suffix;
+}
 
-        function timeStamp() {
-            var now = new Date();
-            var date = [now.getMonth() + 1, now.getDate(), now.getFullYear()];
-            var time = [now.getHours(), now.getMinutes()];
-            var suffix = (time[0] < 12) ? "AM" : "PM";
-            time[0] = (time[0] < 12) ? time[0] : time[0] - 12;
+//reference
+// var nameInp = document.getElementById("name");
+var commentTarea = document.getElementById("comment");
 
-            for (var i = 1; i < 3; i++) {
-                if (time[i] < 10) {
-                time[i] = "0" + time[i];
-                }
+// variable initial
+// function get_acc(i){
+//   return projects[i].name;
+// }
+// var idProject = document.getElementById("content_comment").getAttribute("idProject");
+var idProject = 0;
+var idComment = 0;
+
+//get comment count
+get(child(dbRef,"comment/"+idProject+"/"+"count")).then((snapshot)=>{
+            if(snapshot.exists()){
+                idComment = snapshot.val()
             }
-
-            return date.join("/") + ", " + time.join(":") + " " + suffix;
-        }
-
-        //reference
-        // var nameInp = document.getElementById("name");
-        var commentTarea = document.getElementById("comment");
-
-        // variable initial
-        // function get_acc(i){
-        //   return projects[i].name;
-        // }
-        // var idProject = document.getElementById("content_comment").getAttribute("idProject");
-        var idProject = 0;
-        var idComment = 0;
-
-        //get comment count
-        get(child(dbRef,"comment/"+idProject+"/"+"count")).then((snapshot)=>{
-                    if(snapshot.exists()){
-                        idComment = snapshot.val()
-                    }
-                })
-         //load comment       
-        window.addEventListener('load',(event)=>{
-            get(child(dbRef,"comment/"+idProject)).then((snapshot)=>{
-                snapshot.forEach((childSnapshot)=>{
-                    {
-                        if(childSnapshot.val()!=idComment){
-                            let name = childSnapshot.val().name
-                            let comment = childSnapshot.val().comment
-                            let time = childSnapshot.val().time
-                            addComment(name,comment,time);
-                        }
-                    }     
-                })  
-            });
-        });
-
-        
-        //post comment
-        function postComment() {
-          console.log(get_acc());
-          var idProject = document.getElementById("content_comment").getAttribute("idProject");
-          // var name = document.getElementById("comment_name").value;
-          var comment = document.getElementById("content_comment").value;
-          // console.log(nameInp.value);
-          // console.log(commentTarea.value);
-            // var name = nameInp.value,
-                // comment = commentTarea.value,
-                // time = timeStamp();
-           console.log(idProject, name, comment);
-                if (name && comment){
-                    set(ref(db,"comment/"+idProject+"/"+idComment),{
-                    idProject : idProject,
-                    idComment : idComment,
-                    name: name,
-                    comment: comment,
-                    // time: time
-                    })
-                    .then(()=>{
-                        idComment++;
-                        update(ref(db,"comment/"+idProject),{
-                        count: idComment
-                        })
-
-                    })
+        })
+ //load comment       
+window.addEventListener('load',(event)=>{
+    get(child(dbRef,"comment/"+idProject)).then((snapshot)=>{
+        snapshot.forEach((childSnapshot)=>{
+            {
+                if(childSnapshot.val()!=idComment){
+                    let name = childSnapshot.val().name
+                    let comment = childSnapshot.val().comment
+                    let time = childSnapshot.val().time
+                    addComment(name,comment,time);
                 }
-            //clear UI
-            // document.getElementById("comment_name").value = '';
-            document.getElementById("content_comment").value = '';
+            }     
+        })  
+    });
+});
 
-            get(child(dbRef,"comment/"+idProject+"/"+idComment)).then((snapshot)=>{
-                    if(snapshot.exists()){
-                        var comment = snapshot.val();
-                        addComment(comment.comment);
-                    }
+
+//post comment
+function postComment() {
+  console.log(get_acc());
+  var idProject = document.getElementById("content_comment").getAttribute("idProject");
+  // var name = document.getElementById("comment_name").value;
+  var comment = document.getElementById("content_comment").value;
+  // console.log(nameInp.value);
+  // console.log(commentTarea.value);
+    // var name = nameInp.value,
+        // comment = commentTarea.value,
+        // time = timeStamp();
+   console.log(idProject, name, comment);
+   console.log("comment/"+idProject+"/"+countCommentOfProject);
+        if (comment){
+            const db = getDatabase();
+             console.log("db", db);
+            set(
+              ref(db,"comment/"+idProject+"/"+countCommentOfProject),
+              {
+                idProject : idProject,
+                idComment : countCommentOfProject,
+                name: name,
+                comment: comment,
+              }
+            )
+            .then(()=>{
+              console.log('Add comment success');
+                countCommentOfProject++;
+                update(ref(db,"comment/"+idProject),{
+                count: countCommentOfProject
                 })
-                .catch((error)=>{{
-                    alert("unsucessfully,error"+error);
-                }})
-        }
 
-        //add comment
-        function addComment(comment) {
-            var comments = document.getElementById("comments");
-            if(comments){
-            comments.innerHTML = "<p>" + comment + "</p>" + comments.innerHTML;
+            })
         }
-      }
-        //btn event listener
-        var btn_sub = document.getElementById("btnSubmit")
-        if(btn_sub)
-        {
-              btn_sub.addEventListener('click',postComment);
+    //clear UI
+    // document.getElementById("comment_name").value = '';
+    document.getElementById("content_comment").value = '';
+
+    get(child(dbRef,"comment/"+idProject+"/"+countCommentOfProject)).then((snapshot)=>{
+          console.log('get comment success', snapshot);
+        if(snapshot.exists()){
+          console.log('get comment success', snapshot.val());
+            var comment = snapshot.val();
+            addComment(comment.comment);
         }
+    })
+    .catch((error)=>{{
+        alert("unsucessfully,error"+error);
+    }});
+}
+
+//add comment
+function addComment(comment) {
+var comments = document.getElementById("comments");
+if(comments){
+  comments.innerHTML = "<p>Người dùng bình luận: <b>" + comment + "</b></p><hr>" + comments.innerHTML;
+}
+}
+
+// //add comment
+// function addComment(comment) {
+//     var comments = document.getElementById("comments");
+//     if(comments){
+//     comments.innerHTML = "<p>" + comment + "</p>" + comments.innerHTML;
+// }
+//btn event listener
+// var btn_sub = document.getElementById("btnSubmit")
+// if(btn_sub)
+// {
+//       btn_sub.addEventListener('click',postComment);
+// }
 
 
 
