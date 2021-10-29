@@ -5,6 +5,7 @@
 - Google cloud
 - Firebase
 - Nodejs
+- Smart contract
 
 ### Cách sử dụng.
 1. Cài đặt ví Celo extension: https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en
@@ -20,5 +21,5 @@
 - Xem danh sách những người đầu tư vào dự án.
 - Bình luận về dự án.
 - Yêu cầu hoàn lại tiền khi dự án gọi vốn không thành công.
-
+- Thực hiện các giao dịch thông qua ví Celo.
 
