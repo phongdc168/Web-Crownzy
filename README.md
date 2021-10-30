@@ -23,3 +23,6 @@
 - Yêu cầu hoàn lại tiền khi dự án gọi vốn không thành công.
 - Thực hiện các giao dịch thông qua ví Celo.
 
+![image](https://user-images.githubusercontent.com/20872340/139522381-275e4a25-39d9-4e29-ba62-25ba722c1a32.png)
+
+![image](https://user-images.githubusercontent.com/20872340/139522401-e55ffefb-6301-4396-bde8-2efaa4389e3c.png)
